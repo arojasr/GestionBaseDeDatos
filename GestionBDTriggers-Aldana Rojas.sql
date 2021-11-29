@@ -44,3 +44,12 @@ delimiter //
 			(select user()),old.id);
     end;
 // delimiter ;
+
+
+/*Testeo*/
+call SP_Articulos_Insert('Pantalon','Indumentaria','PRENDA','CANINO',120,170,20,1,30,'Tendencia',1);
+select @ultimoId:= (Select max(id) from articulos);
+update articulos set nombre='Remera' where id = @ultimoId;
+call SP_Articulos_Delete(@ultimoId);
+select * from control_tablas;
+select * from articulos;
